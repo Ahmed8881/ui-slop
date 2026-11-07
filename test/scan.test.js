@@ -24,6 +24,12 @@ test("hits carry file and line", async () => {
   assert.deepEqual([hit.file, hit.line], ["test/fixtures/sloppy/styles.css", 3]);
 });
 
+test("long lines are cut around the match and marked", () => {
+  const r = analyze([{ name: "a.css", text: `${"x".repeat(200)} transition: all 1s; ${"y".repeat(200)}` }]);
+  const { snippet } = r.findings[0].hits[0];
+  assert.match(snippet, /^…x+ transition: all 1s; y+…$/);
+});
+
 test("a slop rule below its minimum is listed but not scored", () => {
   const r = analyze([{ name: "a.html", text: "<span>🚀</span>" }]);
   assert.equal(r.score, 0);

@@ -48,7 +48,8 @@ export function analyze(sources) {
         if (rule.unless?.test(lines[n])) continue;
         // a short window around the match keeps minified one-line files readable
         const col = m.index - starts[n];
-        const snippet = lines[n].slice(Math.max(0, col - 30), col + 70).trim();
+        const from = Math.max(0, col - 30), to = col + 70;
+        const snippet = (from > 0 ? "…" : "") + lines[n].slice(from, to).trim() + (to < lines[n].trimEnd().length ? "…" : "");
         hits.get(rule.id).push({ file: name, line: n + 1, snippet, match: m[0].trim().toLowerCase() });
       }
     }
