@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- The "after" page: same job (a product landing page), decisions made on purpose. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ledgerline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Instrument+Sans:wght@400;600&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1f1a17;
+      --ink-muted: #5c534c;
+      --paper: #f4efe6;
+      --rule: #d8cfc2;
+      --accent: #b4441e;
+      --accent-ink: #ffffff;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Instrument Sans", system-ui, sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+      --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px; --space-8: 40px; --space-12: 72px;
+      --radius: 2px;
+      --dur: 150ms;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body { font-family: var(--font-body); background: var(--paper); color: var(--ink); }
+    header { display: flex; justify-content: space-between; align-items: baseline; padding: var(--space-6) var(--space-12); border-bottom: 1px solid var(--ink); }
+    .logo { font-family: var(--font-display); font-size: 24px; color: var(--ink); text-decoration: none; }
+    header nav { display: flex; gap: var(--space-6); font-size: 15px; }
+    header nav a { color: var(--ink-muted); text-decoration: none; }
+    main { display: grid; grid-template-columns: 7fr 5fr; gap: var(--space-8); padding: var(--space-12); }
+    .index { font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: .08em; }
+    h1 { font-family: var(--font-display); font-weight: 400; font-size: 76px; line-height: .98; letter-spacing: -.02em; margin: var(--space-4) 0 var(--space-6); }
+    h1 em { color: var(--accent); }
+    .lede { font-size: 19px; line-height: 1.6; max-width: 34em; color: var(--ink-muted); }
+    .actions { display: flex; gap: var(--space-4); align-items: center; margin-top: var(--space-8); }
+    .btn { font: 600 16px var(--font-body); padding: var(--space-3) var(--space-6); border-radius: var(--radius); border: 1px solid var(--ink); background: var(--accent); color: var(--accent-ink); transition: background-color var(--dur) ease-out; }
+    .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .link { color: var(--ink); }
+    aside { border-left: 1px solid var(--rule); padding-left: var(--space-8); }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    caption { text-align: left; font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); padding-bottom: var(--space-3); }
+    th, td { text-align: left; padding: var(--space-3) 0; border-bottom: 1px solid var(--rule); }
+    td.num { font-family: var(--font-mono); text-align: right; }
+    .open { color: var(--accent); }
+    @media (prefers-reduced-motion: no-preference) {
+      h1 { animation: rise 500ms ease-out; }
+    }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">Ledgerline</a>
+    <nav aria-label="Main"><a href="/pricing">Pricing</a><a href="/docs">Docs</a><a href="/login">Sign in</a></nav>
+  </header>
+  <main>
+    <section>
+      <p class="index">01 / MONTH-END</p>
+      <h1>Close the books in two days, <em>not ten.</em></h1>
+      <p class="lede">Ledgerline matches bank lines to invoices as they arrive, so month-end is a review of the few that did not match, not a hunt through all of them.</p>
+      <div class="actions">
+        <button class="btn" type="button">Start a 14-day trial</button>
+        <a class="link" href="/demo">Watch a close, 3 min</a>
+      </div>
+    </section>
+    <aside>
+      <table>
+        <caption>October close, Harbor &amp; Pine Ltd.</caption>
+        <tr><th scope="row">Bank lines</th><td class="num">4,182</td></tr>
+        <tr><th scope="row">Matched automatically</th><td class="num">4,139</td></tr>
+        <tr><th scope="row">Matched by rule</th><td class="num">38</td></tr>
+        <tr><th scope="row">Waiting on you</th><td class="num open">5</td></tr>
+        <tr><th scope="row">Days to close</th><td class="num">1.5</td></tr>
+      </table>
+    </aside>
+  </main>
+</body>
+</html>

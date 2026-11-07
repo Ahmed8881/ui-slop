@@ -1,0 +1,45 @@
+<!doctype html>
+<!-- The "before" page: every default an AI page generator reaches for. Built to be flagged. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NovaFlow AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    body { font-family: Inter, sans-serif; background: #0b0b1a; color: #e5e7eb; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; backdrop-filter: blur(12px); background: rgba(255,255,255,.04); border-bottom: 1px solid rgba(255,255,255,.08); }
+    .logo { font-weight: 800; font-size: 20px; }
+    .nav-cta { padding: 10px 20px; border-radius: 24px; background: linear-gradient(135deg, #8b5cf6, #3b82f6); color: #fff; font-weight: 600; }
+    .hero { text-align: center; padding: 72px 48px 56px; background: radial-gradient(circle at 50% 0%, rgba(124,58,237,.45), transparent 60%); }
+    .pill { display: inline-block; padding: 6px 14px; border-radius: 24px; border: 1px solid rgba(167,139,250,.4); color: #c4b5fd; font-size: 14px; margin-bottom: 24px; }
+    h1 { font-size: 64px; line-height: 1.05; font-weight: 800; background: linear-gradient(90deg, #c084fc, #818cf8, #60a5fa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .sub { max-width: 620px; margin: 20px auto 32px; font-size: 19px; color: #9ca3af; }
+    .cta { display: inline-block; padding: 16px 32px; border-radius: 24px; background: linear-gradient(135deg, #7c3aed, #3b82f6); color: #fff; font-weight: 600; transition: all .3s ease; }
+    .cta:focus { outline: none; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 0 48px; max-width: 1100px; margin: 0 auto; }
+    .card { padding: 28px; border-radius: 24px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(16px); box-shadow: 0 10px 40px rgba(124,58,237,.2); }
+    .icon { font-size: 32px; margin-bottom: 12px; }
+    .card h3 { font-size: 20px; margin-bottom: 8px; color: #fff; }
+    .card p { color: #9ca3af; font-size: 15px; line-height: 1.5; }
+    .glow { animation: pulse 3s infinite; }
+    @keyframes pulse { 50% { opacity: .7; } }
+  </style>
+</head>
+<body>
+  <nav><span class="logo">NovaFlow AI</span><div class="nav-cta" onclick="signup()">Get started</div></nav>
+  <section class="hero">
+    <span class="pill">✨ Introducing NovaFlow 2.0</span>
+    <h1>Unlock the power of<br>AI for your team</h1>
+    <p class="sub">Supercharge your workflow with our all-in-one platform. Seamless collaboration, built for the future.</p>
+    <div class="cta glow" onclick="signup()">Start for free</div>
+  </section>
+  <section class="grid">
+    <div class="card"><div class="icon">🚀</div><h3>Lightning fast</h3><p>Cutting-edge performance that takes your productivity to the next level.</p></div>
+    <div class="card"><div class="icon">🧠</div><h3>AI-powered</h3><p>Next-generation models that revolutionize how you work.</p></div>
+    <div class="card"><div class="icon">🔒</div><h3>Secure by default</h3><p>Enterprise-grade security, effortlessly built in.</p></div>
+  </section>
+</body>
+</html>

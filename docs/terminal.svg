@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="896" viewBox="0 0 940 896" role="img" aria-label="ui-slop output for an AI-generated landing page">
+<rect width="940" height="896" rx="10" fill="#0d1117"/>
+<circle cx="24" cy="24" r="6" fill="#ff5f57"/><circle cx="44" cy="24" r="6" fill="#febc2e"/><circle cx="64" cy="24" r="6" fill="#28c840"/>
+<g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13.5" xml:space="preserve" style="white-space:pre">
+<text xml:space="preserve" x="24" y="60" fill="#7ee787">$ npx ui-slop docs/demo/generated.html</text>
+<text xml:space="preserve" x="24" y="80" fill="#c9d1d9"></text>
+<text xml:space="preserve" x="24" y="100" fill="#ff7b72">ui-slop 85/100  looks AI-generated</text>
+<text xml:space="preserve" x="24" y="120" fill="#c9d1d9">1 file(s) scanned</text>
+<text xml:space="preserve" x="24" y="140" fill="#c9d1d9"></text>
+<text xml:space="preserve" x="24" y="160" fill="#ffffff">Slop (adds to the score)</text>
+<text xml:space="preserve" x="24" y="180" fill="#e3b341"> +20  generic-font  Default AI font as the main typeface (2)</text>
+<text xml:space="preserve" x="24" y="200" fill="#c9d1d9">        docs/demo/generated.html:9  …s://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;di…</text>
+<text xml:space="preserve" x="24" y="220" fill="#8b949e">        fix: Pair a display face with a body face that differ in structure: serif + sans, condensed…</text>
+<text xml:space="preserve" x="24" y="240" fill="#e3b341"> +20  purple-gradient  Purple-to-blue gradient (3)</text>
+<text xml:space="preserve" x="24" y="260" fill="#c9d1d9">        docs/demo/generated.html:15  …der-radius: 24px; background: linear-gradient(135deg, #8b5cf6…</text>
+<text xml:space="preserve" x="24" y="280" fill="#8b949e">        fix: Derive the palette from the brand. Use a flat color or a subtle tinted surface instead.</text>
+<text xml:space="preserve" x="24" y="300" fill="#e3b341"> +15  emoji-icon  Emoji used as icons (3)</text>
+<text xml:space="preserve" x="24" y="320" fill="#c9d1d9">        docs/demo/generated.html:40  …class=&quot;card&quot;&gt;&lt;div class=&quot;icon&quot;&gt;🚀&lt;/div&gt;&lt;h3&gt;Lightning fast&lt;/h3…</text>
+<text xml:space="preserve" x="24" y="340" fill="#8b949e">        fix: Use one SVG icon set at one stroke width, with aria-hidden=&quot;true&quot;.</text>
+<text xml:space="preserve" x="24" y="360" fill="#e3b341"> +15  cliche-copy  Marketing cliché copy (10)</text>
+<text xml:space="preserve" x="24" y="380" fill="#c9d1d9">        docs/demo/generated.html:35  &lt;h1&gt;Unlock the power of&lt;br&gt;AI for your team&lt;/h1&gt;</text>
+<text xml:space="preserve" x="24" y="400" fill="#8b949e">        fix: Say what the product does for whom: &quot;Close the books in two days, not ten.&quot;</text>
+<text xml:space="preserve" x="24" y="420" fill="#e3b341"> +10  gradient-text  Gradient text on headings (2)</text>
+<text xml:space="preserve" x="24" y="440" fill="#c9d1d9">        docs/demo/generated.html:18  …c, #818cf8, #60a5fa); -webkit-background-clip: text; backgrou…</text>
+<text xml:space="preserve" x="24" y="460" fill="#8b949e">        fix: Use a solid color. Emphasize with weight, italic, or the accent on one word.</text>
+<text xml:space="preserve" x="24" y="480" fill="#e3b341">  +5  glassmorphism  Glassmorphism blur cards (2)</text>
+<text xml:space="preserve" x="24" y="500" fill="#c9d1d9">        docs/demo/generated.html:13  …: center; padding: 20px 48px; backdrop-filter: blur(12px); ba…</text>
+<text xml:space="preserve" x="24" y="520" fill="#8b949e">        fix: Use solid surfaces. If translucent, check 4.5:1 contrast on the worst background.</text>
+<text xml:space="preserve" x="24" y="540" fill="#e3b341">  +0  rounded-everything  Large radius on everything (4)</text>
+<text xml:space="preserve" x="24" y="560" fill="#c9d1d9">        docs/demo/generated.html:15  …nav-cta { padding: 10px 20px; border-radius: 24px; background…</text>
+<text xml:space="preserve" x="24" y="580" fill="#8b949e">        fix: Small radius (or none) on controls, at most a large radius on containers.</text>
+<text xml:space="preserve" x="24" y="600" fill="#c9d1d9"></text>
+<text xml:space="preserve" x="24" y="620" fill="#ffffff">Issues (not scored, worth fixing)</text>
+<text xml:space="preserve" x="24" y="640" fill="#c9d1d9">   -  focus-removed  Focus outline removed without a visible replacement (1)</text>
+<text xml:space="preserve" x="24" y="660" fill="#c9d1d9">        docs/demo/generated.html:21  .cta:focus { outline: none; }</text>
+<text xml:space="preserve" x="24" y="680" fill="#8b949e">        fix: Keep a :focus-visible style, e.g. outline: 2px solid var(--color-focus).</text>
+<text xml:space="preserve" x="24" y="700" fill="#c9d1d9">   -  transition-all  transition: all (1)</text>
+<text xml:space="preserve" x="24" y="720" fill="#c9d1d9">        docs/demo/generated.html:20  …olor: #fff; font-weight: 600; transition: all .3s ease; }</text>
+<text xml:space="preserve" x="24" y="740" fill="#8b949e">        fix: Transition only the properties that change, e.g. background-color and transform.</text>
+<text xml:space="preserve" x="24" y="760" fill="#c9d1d9">   -  div-click  Clickable div or span (2)</text>
+<text xml:space="preserve" x="24" y="780" fill="#c9d1d9">        docs/demo/generated.html:32  …lass=&quot;logo&quot;&gt;NovaFlow AI&lt;/span&gt;&lt;div class=&quot;nav-cta&quot; onclick=&quot;s…</text>
+<text xml:space="preserve" x="24" y="800" fill="#8b949e">        fix: Use &lt;button&gt; for actions and &lt;a href&gt; for navigation; they work with the keyboard.</text>
+<text xml:space="preserve" x="24" y="820" fill="#c9d1d9">   -  reduced-motion  Animations without prefers-reduced-motion (1)</text>
+<text xml:space="preserve" x="24" y="840" fill="#c9d1d9">        docs/demo/generated.html</text>
+<text xml:space="preserve" x="24" y="860" fill="#8b949e">        fix: Wrap movement in @media (prefers-reduced-motion: no-preference), or use motion-safe: i…</text>
+</g></svg>
