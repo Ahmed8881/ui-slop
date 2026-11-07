@@ -12,7 +12,10 @@ const cases = {
     yes: ["background: linear-gradient(135deg, #6366f1, #3b82f6);", "class=\"bg-gradient-to-r from-purple-600 to-blue-500\"", "background: radial-gradient(circle, violet, blue)"],
     no: ["background: linear-gradient(#fff, #f4f1ea);", "class=\"from-amber-500\""],
   },
-  "emoji-icon": { yes: ["<span>🚀</span>"], no: ["<svg aria-hidden=\"true\"></svg>"] },
+  "emoji-icon": {
+    yes: ["<span>🚀</span>", "<div class=\"icon\">\n  ✨\n</div>", "{ title: 'Fast', icon: '⚡' }", "<Feature icon=\"🔒\" />"],
+    no: ["<svg aria-hidden=\"true\"></svg>", "<p>🍺 The Package Manager for Everywhere</p>", "Ship it 🚀 today"],
+  },
   "cliche-copy": {
     yes: ["Unlock the power of your data", "A seamless experience", "Supercharge your workflow"],
     no: ["Close the books in two days, not ten."],

@@ -30,6 +30,12 @@ test("a slop rule below its minimum is listed but not scored", () => {
   assert.equal(r.findings[0].counted, false);
 });
 
+test("cliche copy scores only with 3 different phrases", () => {
+  const one = analyze([{ name: "a.html", text: "<p>Seamless.</p><p>Seamless.</p><p>Seamless.</p><p>seamless</p>" }]);
+  const three = analyze([{ name: "a.html", text: "<p>Seamless. Supercharge. Cutting-edge.</p>" }]);
+  assert.deepEqual([one.score, three.score], [0, 15]);
+});
+
 test("reduced-motion is satisfied by any file", () => {
   const r = analyze([
     { name: "a.css", text: "@keyframes x {}" },

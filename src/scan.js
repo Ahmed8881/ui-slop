@@ -49,7 +49,7 @@ export function analyze(sources) {
         // a short window around the match keeps minified one-line files readable
         const col = m.index - starts[n];
         const snippet = lines[n].slice(Math.max(0, col - 30), col + 70).trim();
-        hits.get(rule.id).push({ file: name, line: n + 1, snippet });
+        hits.get(rule.id).push({ file: name, line: n + 1, snippet, match: m[0].trim().toLowerCase() });
       }
     }
   }
@@ -57,7 +57,8 @@ export function analyze(sources) {
   const findings = rules
     .map((r) => {
       const h = hits.get(r.id);
-      return { id: r.id, kind: r.kind, title: r.title, fix: r.fix, weight: r.weight ?? 0, counted: r.kind === "slop" && h.length >= (r.min ?? 1), hits: h };
+      const n = r.distinct ? new Set(h.map((x) => x.match)).size : h.length;
+      return { id: r.id, kind: r.kind, title: r.title, fix: r.fix, weight: r.weight ?? 0, counted: r.kind === "slop" && n >= (r.min ?? 1), hits: h.map(({ match, ...x }) => x) };
     })
     .filter((f) => f.hits.length);
 
@@ -72,11 +73,43 @@ export function analyze(sources) {
   return { score, issues, files: sources.length, findings };
 }
 
+const MAX_STYLESHEETS = 20;
+
+async function get(url) {
+  const res = await fetch(url, { headers: { "user-agent": "ui-slop" }, signal: AbortSignal.timeout(15_000) });
+  if (!res.ok) throw new Error(`${url} returned HTTP ${res.status}`);
+  const body = await res.text();
+  if (body.length > 5 * MAX_BYTES) throw new Error(`${url} is over 5 MB`);
+  return body;
+}
+
+// shortcut: reads the HTML the server sends plus its <link rel=stylesheet> files. Pages that
+// render everything in client JavaScript show little; scan their source or build output instead.
+export async function fetchSources(target) {
+  const page = new URL(target);
+  const html = await get(page);
+  // Inline scripts on a served page are framework output (hydration JSON repeats the copy and
+  // carries the framework's own innerHTML calls), so blank them, keeping line numbers.
+  const visible = html.replace(/(<script\b[^>]*>)([\s\S]*?)(<\/script>)/gi, (_, open, body, close) => open + body.replace(/[^\n]+/g, "") + close);
+  const sources = [{ name: page.href, text: visible }];
+  let skipped = 0;
+  const links = [...html.matchAll(/<link\b[^>]*>/gi)].map((m) => m[0]).filter((tag) => /\brel=["']?[^"'>]*\bstylesheet\b/i.test(tag));
+  for (const tag of links.slice(0, MAX_STYLESHEETS)) {
+    const href = tag.match(/\bhref=(?:"([^"]+)"|'([^']+)'|([^\s>]+))/i);
+    if (!href) continue;
+    const css = new URL((href[1] ?? href[2] ?? href[3]).replaceAll("&amp;", "&"), page);
+    if (!/^https?:$/.test(css.protocol)) continue;
+    // one stylesheet that fails to load should not fail the whole scan
+    try { sources.push({ name: css.href, text: await get(css) }); } catch { skipped++; }
+  }
+  return { sources, skipped };
+}
+
 export async function scan(targets) {
   const sources = [];
   let skipped = 0;
   for (const t of targets) {
-    const r = await readSources(t);
+    const r = /^https?:\/\//i.test(t) ? await fetchSources(t) : await readSources(t);
     sources.push(...r.sources);
     skipped += r.skipped;
   }

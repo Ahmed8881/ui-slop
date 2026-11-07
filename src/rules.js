@@ -1,6 +1,7 @@
 // Each rule is a regex run over whole files, so tags that span lines still match.
 // "slop" rules add `weight` to the score once they hit at least `min` times (default 1);
 // the weights sum to 100. "issue" rules are quality problems: listed, never scored.
+// `distinct` counts different matched phrases toward `min`, not every hit.
 // `unless` drops a hit when the line it is on also matches (e.g. outline removed but a ring added).
 
 const FONTS = "Inter|Roboto|Arial|Helvetica|Poppins|Montserrat|Space Grotesk|DM Sans";
@@ -28,10 +29,11 @@ export const rules = [
     id: "emoji-icon", kind: "slop", weight: 15, min: 2,
     title: "Emoji used as icons",
     fix: "Use one SVG icon set at one stroke width, with aria-hidden=\"true\".",
-    re: /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu,
+    // only an emoji that is a whole element (<span>🚀</span>) or an icon value; emoji in prose is content
+    re: /(?:>\s*|\bicon\s*[:=]\s*\{?\s*["'`])[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]️?\s*(?=<|["'`])/gu,
   },
   {
-    id: "cliche-copy", kind: "slop", weight: 15,
+    id: "cliche-copy", kind: "slop", weight: 15, min: 3, distinct: true,
     title: "Marketing cliché copy",
     fix: "Say what the product does for whom: \"Close the books in two days, not ten.\"",
     re: /\b(?:unlock the (?:full )?power|harness the power|revolutioni[sz]e|seamless(?:ly)?|elevate your|supercharge|built for the future|all-in-one platform|next-gen(?:eration)?|game-?changer|cutting-edge|to the next level|effortless(?:ly)?|streamline your)\b/gi,

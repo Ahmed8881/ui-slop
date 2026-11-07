@@ -10,7 +10,7 @@ const sections = (r) => [
 ];
 
 export function text(r) {
-  const out = [`ui-slop ${r.score}/100  ${verdict(r.score)}`, `${r.files} file(s) scanned${r.skipped ? `, ${r.skipped} skipped (over 1 MB)` : ""}`];
+  const out = [`ui-slop ${r.score}/100  ${verdict(r.score)}`, `${r.files} file(s) scanned${r.skipped ? `, ${r.skipped} skipped (too large or failed to load)` : ""}`];
   for (const [heading, list] of sections(r)) {
     if (!list.length) continue;
     out.push("", heading);
