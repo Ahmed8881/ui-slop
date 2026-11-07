@@ -1,0 +1,16 @@
+{
+  "name": "ui-slop",
+  "version": "0.1.0",
+  "description": "Score how AI-generated your UI looks, and list the accessibility and safety issues that come with it.",
+  "type": "module",
+  "bin": { "ui-slop": "bin/ui-slop.js" },
+  "files": ["bin", "src"],
+  "engines": { "node": ">=20" },
+  "scripts": { "test": "node --test" },
+  "keywords": ["ui", "design", "lint", "accessibility", "ai", "slop", "frontend", "cli", "github-action"],
+  "author": "Ahmed Butt (https://github.com/Ahmed8881)",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/Ahmed8881/ui-slop.git" },
+  "homepage": "https://github.com/Ahmed8881/ui-slop#readme",
+  "bugs": "https://github.com/Ahmed8881/ui-slop/issues"
+}
