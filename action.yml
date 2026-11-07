@@ -1,0 +1,47 @@
+name: ui-slop
+description: Score how AI-generated your UI looks and list accessibility and safety issues.
+author: Ahmed Butt
+branding:
+  icon: eye
+  color: orange
+
+inputs:
+  path:
+    description: Files, folders, or URLs to scan, separated by spaces.
+    default: "."
+  max-score:
+    description: Fail the step if the slop score (0-100) is above this.
+    default: "100"
+  max-issues:
+    description: Fail the step if there are more issues than this. Empty means no limit.
+    default: ""
+
+outputs:
+  score:
+    description: The slop score, 0-100.
+    value: ${{ steps.scan.outputs.score }}
+  issues:
+    description: The number of issues found.
+    value: ${{ steps.scan.outputs.issues }}
+
+runs:
+  using: composite
+  steps:
+    - id: scan
+      shell: bash
+      env:
+        # inputs go through env, never straight into the script, so they cannot inject shell
+        SCAN_PATH: ${{ inputs.path }}
+        MAX_SCORE: ${{ inputs.max-score }}
+        MAX_ISSUES: ${{ inputs.max-issues }}
+      run: |
+        set -f  # paths are split on spaces but never glob-expanded
+        args=(--json --max-score "$MAX_SCORE")
+        [ -n "$MAX_ISSUES" ] && args+=(--max-issues "$MAX_ISSUES")
+        set +e
+        node "$GITHUB_ACTION_PATH/bin/ui-slop.js" $SCAN_PATH "${args[@]}" > "$RUNNER_TEMP/ui-slop.json"
+        code=$?
+        set -e
+        [ "$code" -le 1 ] || exit "$code"
+        node "$GITHUB_ACTION_PATH/action/summary.js" "$RUNNER_TEMP/ui-slop.json"
+        exit "$code"
