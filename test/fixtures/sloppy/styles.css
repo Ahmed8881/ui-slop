@@ -1,0 +1,5 @@
+body { font-family: Inter, sans-serif; }
+.hero { background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%); border-radius: 24px; }
+.btn { transition: all 0.3s ease; animation: pulse 2s infinite; }
+.btn:focus { outline: none; }
+@keyframes pulse { 50% { transform: scale(1.05); } }
