@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- README with a real before/after: demo pages in `docs/demo/`, images rebuilt by `docs/make-images.mjs`.
+- Long snippets show `…` where they were cut.
+
 ## 0.1.0 - 2026-11-07
 
 First release.
